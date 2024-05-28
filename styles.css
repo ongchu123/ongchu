@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: url('mecha_background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #f0f0f0;
+}
+
+header {
+    background-color: #1a1a1a;
+    color: #00ff00;
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 2px solid #00ff00;
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-right: 2px solid #00ff00;
+}
+
+main {
+    width: 75%;
+    padding: 2rem;
+}
+
+section {
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 1rem 0;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+form {
+    margin-bottom: 2rem;
+}
+
+input, textarea, button {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    background-color: #333;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #00ff00;
+    color: #1a1a1a;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00cc00;
+}
+
+#results, #suggestionResult, #addCommandResult {
+    margin-top: 1rem;
+}
+
+footer {
+    background-color: #1a1a1a;
+    color: #00ff00;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 2px solid #00ff00;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.entry-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.entry-container h2 {
+    margin-bottom: 20px;
+}
+
+.entry-container button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #00ff00;
+    color: #1a1a1a;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.entry-container button:hover {
+    background-color: #00cc00;
+}
+
+#adminLogin {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#adminLogin.hidden {
+    display: none;
+}
+
+.error-message {
+    color: red;
+}
+
