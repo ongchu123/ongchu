@@ -29,22 +29,27 @@ switch ($action) {
 
 // Function to look up a command
 function lookupCommand($db) {
-    $command = isset($_GET['command']) ? $_GET['command'] : '';
+    $command = isset($_GET['command']) ? trim($_GET['command']) : '';
     $response = ['success' => false];
 
     if ($command) {
         try {
             $stmt = $db->prepare('SELECT description FROM commands WHERE command = :command');
-            $stmt->bindParam(':command', $command);
+            $stmt->bindParam(':command', $command, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
                 $response = ['success' => true, 'description' => $result['description']];
+            } else {
+                $response['message'] = 'Command not found';
             }
         } catch (PDOException $e) {
             error_log("PDOException: " . $e->getMessage());
+            $response['message'] = 'Database query error';
         }
+    } else {
+        $response['message'] = 'Command parameter is required';
     }
 
     echo json_encode($response);

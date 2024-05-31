@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     `;
                 });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                suggestionListDiv.innerHTML = '<p>An error occurred while fetching suggestions. Please try again later.</p>';
             });
     }
 
@@ -42,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
+            addCommandResultDiv.innerHTML = '<p>An error occurred while adding the command. Please try again later.</p>';
         });
     });
 

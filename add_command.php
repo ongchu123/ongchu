@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 $input = json_decode(file_get_contents('php://input'), true);
 $response = ['success' => false'];
@@ -13,6 +14,7 @@ if (!empty($input['command']) && !empty($input['description'])) {
         $stmt->execute();
         $response['success'] = true;
     } catch (PDOException $e) {
+        $response['message'] = 'Database error: ' . $e->getMessage();
         error_log($e->getMessage());
     }
 }

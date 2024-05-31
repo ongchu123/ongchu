@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     resultsDiv.innerHTML = `<p><strong>${command}</strong>: ${data.description}</p>`;
                 } else {
-                    resultsDiv.innerHTML = `<p>No results found for "${command}".</p>`;
+                    resultsDiv.innerHTML = `<p>No results found for "<strong>${command}</strong>".</p>`;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                document.getElementById('results').innerHTML = '<p>An error occurred while fetching the command. Please try again later.</p>';
             });
     });
 
@@ -36,11 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.success) {
                 suggestionResultDiv.innerHTML = `<p>Suggestion submitted successfully!</p>`;
             } else {
-                suggestionResultDiv.innerHTML = `<p>There was an error submitting your suggestion. Please try again.</p>`;
+                suggestionResultDiv.innerHTML = `<p>${data.message}</p>`;
             }
         })
         .catch(error => {
             console.error('Error:', error);
+            suggestionResultDiv.innerHTML = '<p>An error occurred while submitting the suggestion. Please try again later.</p>';
         });
     });
 });

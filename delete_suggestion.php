@@ -1,13 +1,21 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 $input = json_decode(file_get_contents('php://input'), true);
 $response = ['success' => false];
 
 if (!empty($input['id'])) {
-    // Simulate deleting the suggestion from a database
-    // For now, we'll just return success
-    $response['success'] = true;
+    try {
+        $db = new PDO('sqlite:/var/www/html/commands.db');
+        $stmt = $db->prepare('DELETE FROM suggestions WHERE id = :id');
+        $stmt->bindParam(':id', $input['id']);
+        $stmt->execute();
+        $response['success'] = true;
+    } catch (PDOException $e) {
+        $response['message'] = 'Database error: ' . $e->getMessage();
+        error_log($e->getMessage());
+    }
 }
 
 echo json_encode($response);

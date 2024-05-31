@@ -1,8 +1,9 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 $command = $_GET['command'];
-$response = ['success' => false'];
+$response = ['success' => false];
 
 if ($command) {
     try {
@@ -16,6 +17,7 @@ if ($command) {
             $response = ['success' => true, 'description' => $result['description']];
         }
     } catch (PDOException $e) {
+        $response['message'] = 'Database error: ' . $e->getMessage();
         error_log($e->getMessage());
     }
 }

@@ -30,24 +30,25 @@
     </footer>
 
     <script>
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        let command = document.getElementById('command').value;
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let command = document.getElementById('command').value;
 
-        fetch('commands.php?action=lookup&command=' + encodeURIComponent(command))
-            .then(response => response.json())
-            .then(data => {
-                let resultsDiv = document.getElementById('results');
-                if (data.success) {
-                    resultsDiv.innerHTML = `<p><strong>${command}</strong>: ${data.description}</p>`;
-                } else {
-                    resultsDiv.innerHTML = `<p>No results found for "${command}".</p>`;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    });
+            fetch('commands.php?action=lookup&command=' + encodeURIComponent(command))
+                .then(response => response.json())
+                .then(data => {
+                    let resultsDiv = document.getElementById('results');
+                    if (data.success) {
+                        resultsDiv.innerHTML = `<p><strong>${command}</strong>: ${data.description}</p>`;
+                    } else {
+                        resultsDiv.innerHTML = `<p>No results found for "<strong>${command}</strong>".</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('results').innerHTML = '<p>An error occurred while fetching the command. Please try again later.</p>';
+                });
+        });
     </script>
 </body>
 </html>
